@@ -6,24 +6,24 @@ using namespace std;
 void doCos(float x) {
 	float res = cos(x);
 	
-	cout << "Finding the cosine of " << x << "\n";
-	cout << "Result: " << res << "\n";
+	cout << "Finding the cosine of " << x << endl;
+	cout << "Result: " << res << endl;
 }
 
 void doSin(float x) {
 	float sinRes = sin(x);
 	float res = 2 * sinRes;
 	
-	cout << "Finding 2 times the sine of " << x << "\n";
-	cout << "sin(" << x << ") = " << sinRes << "\n";
-	cout << "Result: " << res << "\n";
+	cout << "Finding 2 times the sine of " << x << endl;
+	cout << "sin(" << x << ") = " << sinRes << endl;
+	cout << "Result: " << res << endl;
 }
 
 void doTan(float x) {
 	float res = tan(x);
 	
-	cout << "Finding the tangent of " << x << "\n";
-	cout << "Result: " << res << "\n";
+	cout << "Finding the tangent of " << x << endl;
+	cout << "Result: " << res << endl;
 }
 
 void doLog(float base, float arg) {
@@ -31,39 +31,39 @@ void doLog(float base, float arg) {
 	float lnArg = log(arg);
 	float res = lnArg / lnBase;
 
-	cout << "Finding the log base " << base << " of " << arg << "\n";
-	cout << "Natural log of " << base << ": " << lnBase << "\n";
-	cout << "Natural log of " << arg << ": " << lnArg << "\n";
-	cout << "Result ( ln(" << arg << ") / ln(" << base << ") ): " << res << "\n";
+	cout << "Finding the log base " << base << " of " << arg << endl;
+	cout << "Natural log of " << base << ": " << lnBase << endl;
+	cout << "Natural log of " << arg << ": " << lnArg << endl;
+	cout << "Result ( ln(" << arg << ") / ln(" << base << ") ): " << res << endl;
 }
 
 void doNaturalLog(float arg) {
 	float res = log(arg);
 
-	cout << "Finding the natural log of " << arg << "\n";
-	cout << "Result: " << res << "\n";
+	cout << "Finding the natural log of " << arg << endl;
+	cout << "Result: " << res << endl;
 }
 
 void doSinExponent(float x) {
 	float sinRes = sin(x);
 	float res = pow(3, sinRes);
 
-	cout << "Finding 3 to the power of sine of " << x << "\n";
-	cout << "sin(" << x << ") = " << sinRes << "\n";
-	cout << "Result: " << res << "\n";
+	cout << "Finding 3 to the power of sine of " << x << endl;
+	cout << "sin(" << x << ") = " << sinRes << endl;
+	cout << "Result: " << res << endl;
 }
 
 void doPolyLog(float x) {
 	float arg = pow(x, 2) + 1;
 	
-	cout << "Finding the log base 2 of " << x << "**2 + 1" << "\n";
-	cout << "Argument: " << arg << "\n";
+	cout << "Finding the log base 2 of " << x << "**2 + 1" << endl;
+	cout << "Argument: " << arg << endl;
 	
 	doLog((float)2, arg);
 }
 
 void printNewline() {
-	cout << "\n";
+	cout << endl;
 }
 
 int main() {
