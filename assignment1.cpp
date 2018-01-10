@@ -1,63 +1,64 @@
 #include <cmath>
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
 void doCos(float x) {
 	float res = cos(x);
 	
-	cout << "Finding the cosine of " << x << endl;
-	cout << "Result: " << res << endl;
+	printf("Finding the cosine of %f\n", x);
+	printf("Result: %f\n", res);
 }
 
 void doSin(float x) {
 	float sinRes = sin(x);
 	float res = 2 * sinRes;
 	
-	cout << "Finding 2 times the sine of " << x << endl;
-	cout << "sin(" << x << ") = " << sinRes << endl;
-	cout << "Result: " << res << endl;
+	printf("Finding 2 times the sine of %f\n", x);
+	printf("sin(%f) = %f\n", x, sinRes);
+	printf("Result: %f\n", res);
 }
 
 void doTan(float x) {
 	float res = tan(x);
 	
-	cout << "Finding the tangent of " << x << endl;
-	cout << "Result: " << res << endl;
+	printf("Finding the tangent of %f\n", x);
+	printf("Result: %f\n", res);
 }
 
 void doLog(float base, float arg) {
 	float lnBase = log(base);
 	float lnArg = log(arg);
 	float res = lnArg / lnBase;
-
-	cout << "Finding the log base " << base << " of " << arg << endl;
-	cout << "Natural log of " << base << ": " << lnBase << endl;
-	cout << "Natural log of " << arg << ": " << lnArg << endl;
-	cout << "Result ( ln(" << arg << ") / ln(" << base << ") ): " << res << endl;
+	
+	printf("Finding the log base %f of %f\n", base, arg);
+	printf("Natural log of %f: %f\n", base, lnBase);
+	printf("Natural log of %f: %f\n", arg, lnArg);
+	printf("Result ( ln(%f) / ln(%f) ): %f\n", arg, base, res);
 }
 
 void doNaturalLog(float arg) {
 	float res = log(arg);
 
-	cout << "Finding the natural log of " << arg << endl;
-	cout << "Result: " << res << endl;
+	printf("Finding the natural log of %f\n", arg);
+	printf("Result: %f\n", res);
 }
 
 void doSinExponent(float x) {
 	float sinRes = sin(x);
 	float res = pow(3, sinRes);
-
-	cout << "Finding 3 to the power of sine of " << x << endl;
-	cout << "sin(" << x << ") = " << sinRes << endl;
-	cout << "Result: " << res << endl;
+	
+	printf("Finding 3 to the power of the sine of %f\n", x);
+	printf("sin(%f) = %f\n", x, sinRes);
+	printf("Result: %f\n", res);
 }
 
 void doPolyLog(float x) {
 	float arg = pow(x, 2) + 1;
 	
-	cout << "Finding the log base 2 of " << x << "**2 + 1" << endl;
-	cout << "Argument: " << arg << endl;
+	printf("Finding the log base 2 of %f**2 + 1\n", x);
+	printf("Argument: %f\n", arg);
 	
 	doLog((float)2, arg);
 }
