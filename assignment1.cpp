@@ -1,9 +1,27 @@
+/*********************************************************************
+** Program Filename: assignment1.cpp
+** Author: Alexander Nead-Work
+** Date: 01/08/2018
+** Description: Solution file for CS161 Assignment 1
+** Input: None
+** Output: Various math operation results
+*********************************************************************/
+
 #include <cmath>
 #include <iostream>
 #include <stdio.h>
 
+
 using namespace std;
 
+
+/*********************************************************************
+** Function: doCos
+** Description: Executes the cosine operation in assignment description
+** Parameters: x=input float value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doCos(float x) {
 	float res = cos(x);
 	
@@ -11,6 +29,14 @@ void doCos(float x) {
 	printf("Result: %f\n", res);
 }
 
+
+/*********************************************************************
+** Function: doSin
+** Description: Executes the sine operation in assignment description
+** Parameters: x=input float value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doSin(float x) {
 	float sinRes = sin(x);
 	float res = 2 * sinRes;
@@ -20,6 +46,14 @@ void doSin(float x) {
 	printf("Result: %f\n", res);
 }
 
+
+/*********************************************************************
+** Function: doTan
+** Description: Executes the tangent operation in assignment description
+** Parameters: x=input float value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doTan(float x) {
 	float res = tan(x);
 	
@@ -27,6 +61,14 @@ void doTan(float x) {
 	printf("Result: %f\n", res);
 }
 
+
+/*********************************************************************
+** Function: doLog
+** Description: Executes the logarithm operation in assignment description
+** Parameters: base=float base value, arg=float argument value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doLog(float base, float arg) {
 	float lnBase = log(base);
 	float lnArg = log(arg);
@@ -38,6 +80,14 @@ void doLog(float base, float arg) {
 	printf("Result ( ln(%f) / ln(%f) ): %f\n", arg, base, res);
 }
 
+
+/*********************************************************************
+** Function: doNaturalLog
+** Description: Executes the natural log operation in assignment description
+** Parameters: arg=float argument value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doNaturalLog(float arg) {
 	float res = log(arg);
 
@@ -45,6 +95,14 @@ void doNaturalLog(float arg) {
 	printf("Result: %f\n", res);
 }
 
+
+/*********************************************************************
+** Function: doSinExponent
+** Description: Executes the exponential sine operation in assignment description
+** Parameters: x=input float value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doSinExponent(float x) {
 	float sinRes = sin(x);
 	float res = pow(3, sinRes);
@@ -54,6 +112,14 @@ void doSinExponent(float x) {
 	printf("Result: %f\n", res);
 }
 
+
+/*********************************************************************
+** Function: doPolyLog
+** Description: Executes the logarithm of a polynomial operation in assignment description
+** Parameters: x=input float value
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void doPolyLog(float x) {
 	float arg = pow(x, 2) + 1;
 	
@@ -63,10 +129,26 @@ void doPolyLog(float x) {
 	doLog((float)2, arg);
 }
 
+
+/*********************************************************************
+** Function: printNewline
+** Description: Prints a newline to the screen
+** Parameters: None
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 void printNewline() {
 	cout << endl;
 }
 
+
+/*********************************************************************
+** Function: main
+** Description: Executes the cosine operation in assignment description
+** Parameters: None
+** Pre-Conditions: None
+** Post-Conditions: Text to screen
+*********************************************************************/ 
 int main() {
 	doCos((float)2/3);
 	printNewline();
