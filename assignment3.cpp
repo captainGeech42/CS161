@@ -2,205 +2,18 @@
 ** Program Filename: assignment3.cpp
 ** Author: Alexander Nead-Work
 ** Date: 01/31/2018
-** Description: Solution file for CS161 Assignment 2
+** Description: Solution file for CS161 Assignment 3
 ** Input: Mostly none, a couple functions get string inputs via stdin
 ** Output: The results of various testing functions
 *********************************************************************/
 
-#include <cmath>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <sstream>
+#include "assignment3.hpp"
 
 using namespace std;
-
-bool check_range(int lower_bound, int upper_bound, int test_value) {
-	return test_value >= lower_bound && test_value <= upper_bound;
-}
-
-bool is_int(string num) {
-	for (int i = 0; i < num.length(); i++) {
-		if (!((num[i] >= 48 && num[i] <= 57 ) || num[i] == 45)) {
-			return false;
-		}
-	}
-	return true;
-}
-
-bool is_float(string num) {
-	for (int i = 0; i < num.length(); i++) {
-		if (!((num[i] >= 48 && num[i] <= 57 ) || num[i] == 45 || num[i] == 46)) {
-			return false;
-		}
-	}
-	return true;
-}
-
-bool is_capital(char letter) {
-	return letter >= 65 && letter <= 90;
-}
-
-bool is_even(int num) {
-	return num % 2 == 0;
-}
-
-bool is_odd(int num) {
-	return num % 2 == 1;
-}
-
-int equality_test(int num1, int num2) {
-	if (num1 < num2) {
-		return -1;
-	} else if (num1 == num2) {
-		return 0;
-	} else {
-		return 1;
-	}
-}
-
-bool float_is_equal(float num1, float num2, float precision) {
-	int num1i = num1 * pow(10, (int)precision);
-	int num2i = num2 * pow(10, (int)precision);
-
-	return num1i == num2i;
-}
-
-bool numbers_present(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
-		if (sentence[i] >= 48 && sentence[i] <= 57) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool letters_present(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
-		if ((sentence[i] >= 65 && sentence[i] <= 90) || (sentence[i] >= 97 && sentence[i] <= 122)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool contains_sub_string(string sentence, string sub_string) {
-	for (int i = 0; i < sentence.length(); i++) {
-		if (sentence[i] == sub_string[0]) {
-			bool found_sub_string = true;
-			for (int j = 0; j < sub_string.length(); j++) {
-				if (sentence[i+j] != sub_string[j]) {
-					found_sub_string = false;
-					break;
-				}
-			}
-			if (found_sub_string) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-int word_count(string sentence) {
-	int num_words = 1;
-	for (int i = 0; i < sentence.length(); i++) {
-		if (sentence[i] == ' ') {
-			num_words++;
-		}
-	}
-	return num_words;
-}
-
-string to_upper(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
-		if (sentence[i] >= 97 && sentence[i] <= 122) {
-			sentence[i] -= 32;
-		}
-	}
-	return sentence;
-}
-
-string to_lower(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
-		if (sentence[i] >= 65 && sentence[i] <= 90) {
-			sentence[i] += 32;
-		}
-	}
-	return sentence;
-}
-
-int get_int(string prompt) {
-	bool valid_in = true;
-	string in;
-	do {
-		if (!valid_in) {
-			cout << "Invalid input received." << endl;
-		}
-		cout << prompt;
-		getline(cin, in);
-
-		valid_in = true;
-		for (int i = 0; i < in.length(); i++) {
-			if (!(in[i] >= 48 && in[i] <= 57) || in[i] == 45) {
-				valid_in = false;
-			}
-		}
-	} while (!valid_in);
-	
-	//if we get to here, we have a valid int
-	istringstream iss(in);
-	int int_in;
-	iss >> int_in;
-	return int_in;
-}
-
-int get_float(string prompt) {
-	bool valid_in = true;
-	string in;
-	do {
-		if (!valid_in) {
-			cout << "Invalid input received." << endl;
-		}
-		cout << prompt;
-		getline(cin, in);
-
-		valid_in = true;
-		for (int i = 0; i < in.length(); i++) {
-			if (!(in[i] >= 48 && in[i] <= 57) || in[i] == 45 || in[i] == 46) {
-				valid_in = false;
-			}
-		}
-	} while (!valid_in);
-	
-	//if we get to here, we have a valid float
-	istringstream iss(in);
-	float float_in;
-	iss >> float_in;
-	return float_in;
-}
-
-string get_header(string message) {
-	const int total_line_length = 80;
-	const int message_length = message.length();
-	int num_dashes = total_line_length - message_length - 2; //2 is the space buffer on either side of the message
-	string output;
-	
-	int left_dash = num_dashes / 2;
-	int right_dash;
-	if (num_dashes % 2 == 1)
-		right_dash = left_dash + 1;
-	else
-		right_dash = left_dash;
-
-	output = string(left_dash, '-') + ' ' + message + ' ' + string(right_dash, '-');
-	return output;
-}
 
 int main() {
 	const string pass = "PASS";
 	const string fail = "FAIL";
-	const string line = "------------------------------";
 	
 	/************************* check_range *************************/
 	cout << get_header("Testing check_range") << endl;
@@ -212,6 +25,7 @@ int main() {
 	bool check_range_false = check_range(lb, ub, bad_test);
 	
 	printf("Test 1: lower_bound = %d, upper_bound = %d, test_value = %d\n", lb, ub, good_test);
+	printf("Expected Output: %d\nActual Output %d\n", 1, check_range_true);
 	cout << "Test 1 Status: ";
 	if (check_range_true)
 		cout << pass << endl;
@@ -220,6 +34,7 @@ int main() {
 	cout << endl;
 	
 	printf("Test 2: lower_bound = %d, upper_bound = %d, test_value = %d\n", lb, ub, bad_test);
+	printf("Expected Output: %d\nActual Output %d\n", 0, check_range_false);
 	cout << "Test 2 Status: ";
 	if (!check_range_false)
 		cout << pass << endl;
@@ -228,13 +43,20 @@ int main() {
 	cout << endl;
 		
 	/************************* is_int *************************/
-	cout << line << " Testing is_int " << line << endl;
+	cout << get_header("Testing is_int") << endl;
 	string good_int = "1234";
-	string bad_int = "12.34";
+	string decimal_int = "12.34";
+	string letter_int = "12asdf";
+	string oneneg_int = "-1234";
+	string twoneg_int = "--5678";
 	bool is_int_true = is_int(good_int);
-	bool is_int_false = is_int(bad_int);
+	bool is_int_decimal = is_int(decimal_int);
+	bool is_int_letter = is_int(letter_int);
+	bool is_int_oneneg = is_int(oneneg_int);
+	bool is_int_twoneg = is_int(twoneg_int);
 	
-	printf("Test 1: num = %s\n", good_int.c_str());
+	printf("Test 1: num = \"%s\"\n", good_int.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 0, is_int_true);
 	cout << "Test 1 Status: ";
 	if (is_int_true)
 		cout << pass << endl;
@@ -242,11 +64,354 @@ int main() {
 		cout << fail << endl;
 	cout << endl;
 	
-	printf("Test 2: num = %s\n", bad_int.c_str());
+	printf("Test 2: num = \"%s\"\n", decimal_int.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_int_decimal);
 	cout << "Test 2 Status: ";
-	if (!is_int_false)
+	if (!is_int_decimal)
 		cout << pass << endl;
 	else
 		cout << fail << endl;
 	cout << endl;
+	
+	printf("Test 3: num = \"%s\"\n", letter_int.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_int_letter);
+	cout << "Test 3 Status: ";
+	if (!is_int_letter)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 4: num = \"%s\"\n", oneneg_int.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_int_oneneg);
+	cout << "Test 4 Status: ";
+	if (is_int_oneneg)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 5: num = \"%s\"\n", twoneg_int.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_int_twoneg);
+	cout << "Test 5 Status: ";
+	if (!is_int_twoneg)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* is_float *************************/
+	cout << get_header("Testing is_float") << endl;
+	string good_float = "12.34";
+	string bad_float = "12.34asdf";
+	bool is_float_true = is_float(good_float);
+	bool is_float_false = is_float(bad_float);
+
+	printf("Test 1: num = \"%s\"\n", good_float.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 0, is_float_true);
+	cout << "Test 1 Status: ";
+	if (is_float_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 2: num = \"%s\"\n", bad_float.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_float_false);
+	cout << "Test 2 Status: ";
+	if (!is_float_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* is_capital *************************/
+	cout << get_header("Testing is_capital") << endl;
+	char good_char = 'B';
+	char bad_char = 'b';
+	bool is_capital_true = is_capital(good_char);
+	bool is_capital_false = is_capital(bad_char);
+
+	printf("Test 1: letter = %c\n", good_char);
+	printf("Expected Output: %d\nActual Output %d\n", 0, is_capital_true);
+	cout << "Test 1 Status: ";
+	if (is_capital_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 2: letter = %c\n", bad_char);
+	printf("Expected Output: %d\nActual Output %d\n", 1, is_capital_false);
+	cout << "Test 2 Status: ";
+	if (!is_capital_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* is_even *************************/
+	cout << get_header("Testing is_even") << endl;
+	int good_even = 4;
+	int bad_even = 5;
+	bool is_even_true = is_even(good_even);
+	bool is_even_false = is_even(bad_even);
+
+	printf("Test 1: num = %d\n", good_even);
+	printf("Expected Output: %d\nActual Output %d\n", 0, good_even);
+	cout << "Test 1 Status: ";
+	if (is_even_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 2: num = %d\n", bad_even);
+	printf("Expected Output: %d\nActual Output %d\n", 1, bad_even);
+	cout << "Test 2 Status: ";
+	if (!is_even_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* is_odd *************************/
+	cout << get_header("Testing is_odd") << endl;
+	int good_odd = 5;
+	int bad_odd = 4;
+	bool is_odd_true = is_odd(good_odd);
+	bool is_odd_false = is_odd(bad_odd);
+
+	printf("Test 1: num = %d\n", good_odd);
+	printf("Expected Output: %d\nActual Output %d\n", 0, good_odd);
+	cout << "Test 1 Status: ";
+	if (is_odd_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+	
+	printf("Test 2: num = %d\n", bad_odd);
+	printf("Expected Output: %d\nActual Output %d\n", 1, bad_odd);
+	cout << "Test 2 Status: ";
+	if (!is_odd_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* equality_test *************************/
+	cout << get_header("Testing equality_test") << endl;
+	int equality_low = 1;
+	int equality_high = 3;
+	int equality_test_negative = equality_test(equality_low, equality_high);
+	int equality_test_positive = equality_test(equality_high, equality_low);
+	int equality_test_zero = equality_test(equality_low, equality_low);
+
+	printf("Test 1: num1 = %d, num2 = %d\n", equality_low, equality_high);
+	printf("Expected Output: %d\nActual Output %d\n", -1, equality_test_negative);
+	cout << "Test 1 Status: ";
+	if (equality_test_negative == -1)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: num1 = %d, num2 = %d\n", equality_high, equality_low);
+	printf("Expected Output: %d\nActual Output %d\n", 1, equality_test_positive);
+	cout << "Test 2 Status: ";
+	if (equality_test_positive == 1)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 3: num1 = %d, num2 = %d\n", equality_low, equality_low);
+	printf("Expected Output: %d\nActual Output %d\n", 0, equality_test_zero);
+	cout << "Test 3 Status: ";
+	if (equality_test_zero == 0)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* float_is_equal *************************/
+	cout << get_header("Testing float_is_equal") << endl;
+	float float_equal1 = 4;
+	float float_equal2 = 4.0025;
+	float precision_good = 0.01;
+	float precision_bad = 0.0001;
+	bool float_equal_true = float_is_equal(float_equal1, float_equal2, precision_good);
+	bool float_equal_false = float_is_equal(float_equal1, float_equal2, precision_bad);
+
+	printf("Test 1: num1 = %f, num2 = %f, precision = %f\n", float_equal1, float_equal2, precision_good);
+	printf("Expected Output: %d\nActual Output %d\n", 0, float_equal_true);
+	cout << "Test 1 Status: ";
+	if (float_equal_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: num1 = %f, num2 = %f, precision = %f\n", float_equal1, float_equal2, precision_bad);
+	printf("Expected Output: %d\nActual Output %d\n", 1, float_equal_false);
+	cout << "Test 2 Status: ";
+	if (!float_equal_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* numbers_present *************************/
+	cout << get_header("Testing numbers_present") << endl;
+	string with_numbers = "1234asdf";
+	string without_numbers = "asdf";
+	bool numbers_present_true = numbers_present(with_numbers);
+	bool numbers_present_false = numbers_present(without_numbers);
+
+	printf("Test 1: sentence = \"%s\"\n", with_numbers.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 0, numbers_present_true);
+	cout << "Test 1 Status: ";
+	if (numbers_present_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: sentence = \"%s\"\n", without_numbers.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, numbers_present_false);
+	cout << "Test 2 Status: ";
+	if (!numbers_present_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* letters_present *************************/
+	cout << get_header("Testing letters_present") << endl;
+	string with_letters = "1234asdf";
+	string without_letters = "1234";
+	bool letters_present_true = letters_present(with_letters);
+	bool letters_present_false = letters_present(without_letters);
+
+	printf("Test 1: sentence = \"%s\"\n", with_letters.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 0, letters_present_true);
+	cout << "Test 1 Status: ";
+	if (letters_present_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: sentence = \"%s\"\n", without_letters.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, letters_present_false);
+	cout << "Test 2 Status: ";
+	if (!letters_present_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* contains_sub_string *************************/
+	cout << get_header("Testing contains_sub_string") << endl;
+	string haystack = "The quick brown fox";
+	string good_needle = "brown";
+	string bad_needle = "moon";
+	bool contains_sub_string_true = contains_sub_string(haystack, good_needle);
+	bool contains_sub_string_false = contains_sub_string(haystack, bad_needle);
+
+	printf("Test 1: sentence = \"%s\", sub_string = \"%s\"\n", haystack.c_str(), good_needle.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 0, contains_sub_string_true);
+	cout << "Test 1 Status: ";
+	if (contains_sub_string_true)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: sentence = \"%s\", sub_string = \"%s\"\n", haystack.c_str(), bad_needle.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, contains_sub_string_false);
+	cout << "Test 2 Status: ";
+	if (!contains_sub_string_false)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* word_count *************************/
+	cout << get_header("Testing word_count") << endl;
+	string words5 = "hello my  dear aunt sally";
+	string words3 = "what the  heck";
+	string word = "bonjour";
+	int word_count5 = word_count(words5);
+	int word_count3 = word_count(words3);
+	int word_count1 = word_count(word);
+
+	printf("Test 1: sentence = \"%s\"\n", words5.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 5, word_count5);
+	cout << "Test 1 Status: ";
+	if (word_count5 == 5)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 2: sentence = \"%s\"\n", words3.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 3, word_count3);
+	cout << "Test 2 Status: ";
+	if (word_count3 == 3)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	printf("Test 3: sentence = \"%s\"\n", word.c_str());
+	printf("Expected Output: %d\nActual Output %d\n", 1, word_count1);
+	cout << "Test 3 Status: ";
+	if (word_count1 == 1)
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* to_upper *************************/
+	cout << get_header("Testing to_upper") << endl;
+	string upper_test = "hElLo WoRlD";
+	string upper_expected_result = "HELLO WORLD";
+	string upper_result = to_upper(upper_test);
+
+	printf("Test 1: sentence = \"%s\"\n", upper_test.c_str());
+	printf("Expected Output: %s\nActual Output %s\n", upper_expected_result.c_str(), upper_result.c_str());
+	cout << "Test 1 Status: ";
+	if (upper_result == "HELLO WORLD")
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* to_lower *************************/
+	cout << get_header("Testing to_lower") << endl;
+	string lower_test = "hElLo WoRlD";
+	string lower_expected_result = "hello world";
+	string lower_result = to_lower(lower_test);
+
+	printf("Test 1: sentence = \"%s\"\n", lower_test.c_str());
+	printf("Expected Output: %s\nActual Output %s\n", lower_expected_result.c_str(), lower_result.c_str());
+	cout << "Test 1 Status: ";
+	if (lower_result == "hello world")
+		cout << pass << endl;
+	else
+		cout << fail << endl;
+	cout << endl;
+
+	/************************* get_int *************************/
+	cout << get_header("Testing get_int") << endl;
+	int get_int_res = get_int("Please enter an integer: ");
+	printf("Your integer is: %d\n", get_int_res);
+	cout << endl;
+
+	/************************* get_float *************************/
+	cout << get_header("Testing get_float") << endl;
+	float get_float_res = get_float("Please enter a float: ");
+	printf("Your float is: %f\n", get_float_res);
 }
