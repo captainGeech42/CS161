@@ -26,6 +26,9 @@ using namespace std;
 #include <string>
 #include <sstream>
 
+int get_mode();
+bool is_valid_mode(string);
+
 void standard_calculator();
 string get_standard_calculator_input();
 float string_to_float(string);
@@ -42,10 +45,14 @@ void grade_calculator();
 float weighted_average();
 float unweighted_average();
 int get_int(string);
+float get_float(string);
 bool is_int(string);
+bool is_float(string);
 bool is_valid_grade(string);
 bool are_valid_grades(string);
 string append_int_to_string(string, int);
 string get_grades(string);
+int word_count(string);
+int add_up_grades(string);
 
 #endif
