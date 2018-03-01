@@ -32,7 +32,7 @@ bool check_range(int lower_bound, int upper_bound, int test_value) {
 bool is_int(string num) {
 	if ((num[0] < 48 && num[0] != 45) || (num[0] > 57))
 		return false;
-	for (int i = 1; i < num.length(); i++) {
+	for (unsigned int i = 1; i < num.length(); i++) {
 		if (!(num[i] >= 48 && num[i] <= 57 )) {
 			return false;
 		}
@@ -51,7 +51,7 @@ bool is_float(string num) {
 	if ((num[0] < 48 && num[0] != 45) || (num[0] > 57))
 		return false;
 	int decimal_counter = 0;
-	for (int i = 1; i < num.length(); i++) {
+	for (unsigned int i = 1; i < num.length(); i++) {
 		if (num[i] == 46) {
 			decimal_counter++;
 			if (decimal_counter > 1)
@@ -137,7 +137,7 @@ bool float_is_equal(float num1, float num2, float precision) {
 ** Post-Conditions: returns if there are numbers present
 *********************************************************************/ 
 bool numbers_present(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
+	for (unsigned int i = 0; i < sentence.length(); i++) {
 		if (sentence[i] >= 48 && sentence[i] <= 57) {
 			return true;
 		}
@@ -153,7 +153,7 @@ bool numbers_present(string sentence) {
 ** Post-Conditions: returns if there are letters present
 *********************************************************************/ 
 bool letters_present(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
+	for (unsigned int i = 0; i < sentence.length(); i++) {
 		if ((sentence[i] >= 65 && sentence[i] <= 90) || (sentence[i] >= 97 && sentence[i] <= 122)) {
 			return true;
 		}
@@ -169,10 +169,10 @@ bool letters_present(string sentence) {
 ** Post-Conditions: Whether or not the sentence contains the substring
 *********************************************************************/ 
 bool contains_sub_string(string sentence, string sub_string) {
-	for (int i = 0; i < sentence.length(); i++) {
+	for (unsigned int i = 0; i < sentence.length(); i++) {
 		if (sentence[i] == sub_string[0]) {
 			bool found_sub_string = true;
-			for (int j = 0; j < sub_string.length(); j++) {
+			for (unsigned int j = 0; j < sub_string.length(); j++) {
 				if (sentence[i+j] != sub_string[j]) {
 					found_sub_string = false;
 					break;
@@ -195,7 +195,7 @@ bool contains_sub_string(string sentence, string sub_string) {
 *********************************************************************/ 
 int word_count(string sentence) {
 	int num_words = 1;
-	for (int i = 1; i < sentence.length(); i++) {
+	for (unsigned int i = 1; i < sentence.length(); i++) {
 		if (sentence[i] == ' ' && sentence[i-1] != ' ')
 			num_words++;
 		if (i == sentence.length() && sentence[i] != ' ')
@@ -212,7 +212,7 @@ int word_count(string sentence) {
 ** Post-Conditions: returns an uppercase version of the string
 *********************************************************************/ 
 string to_upper(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
+	for (unsigned int i = 0; i < sentence.length(); i++) {
 		if (sentence[i] >= 97 && sentence[i] <= 122) {
 			sentence[i] -= 32;
 		}
@@ -228,7 +228,7 @@ string to_upper(string sentence) {
 ** Post-Conditions: returns an lowercase version of the string
 *********************************************************************/ 
 string to_lower(string sentence) {
-	for (int i = 0; i < sentence.length(); i++) {
+	for (unsigned int i = 0; i < sentence.length(); i++) {
 		if (sentence[i] >= 65 && sentence[i] <= 90) {
 			sentence[i] += 32;
 		}
@@ -259,7 +259,7 @@ int get_int(string prompt) {
 
 	//if we get to here, we have a valid int
 	int newint = 0;
-	for (int i = 0; i < in.length(); i++) {
+	for (unsigned int i = 0; i < in.length(); i++) {
 		if (in[i] == 48 || in[i] == 45) {
 			continue;
 		} else {
@@ -294,7 +294,7 @@ float get_float(string prompt) {
 	} while (!valid_in);
 	
 	//if we get to here, we have a valid float
-	for (int i = 0; i < in.length(); i++) {
+	for (unsigned int i = 0; i < in.length(); i++) {
 		if (in[i] == 46) {
 			decimal_position = i;
 			break;
@@ -306,19 +306,19 @@ float get_float(string prompt) {
 	for (int i = 0; i < decimal_position; i++) {
 		integer += in[i];
 	}
-	for (int i = decimal_position+1; i < in.length(); i++) {
+	for (unsigned int i = decimal_position+1; i < in.length(); i++) {
 		decimal += in[i];
 	}
 
 	float num = 0;
-	for (int i = 0; i < integer.length(); i++) {
+	for (unsigned int i = 0; i < integer.length(); i++) {
 		if (integer[i] == 48 || integer[i] == 45) {
 			continue;
 		} else {
 			num += (integer[i] - 48) * pow(10, integer.length() - 1 - i);
 		}
 	}
-	for (int i = 0; i < decimal.length(); i++) {
+	for (unsigned int i = 0; i < decimal.length(); i++) {
 		if (decimal[i] == 48) {
 			continue;
 		} else {

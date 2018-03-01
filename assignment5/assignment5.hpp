@@ -9,25 +9,29 @@
 
 using namespace std;
 
-#ifndef ASSIGNMENT4_HPP
-#define ASSIGNMENT4_HPP
+#ifndef ASSIGNMENT5_HPP
+#define ASSIGNMENT5_HPP
 
 /**************************** definitions ****************************/
 
 /**************************** includes ****************************/
 #include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include <stdio.h>
 #include <string>
-#include <sstream>
-
-/**************************** functions ****************************/
-
+#include "helper.hpp"
 
 /**************************** structs ****************************/
 struct player {
     int score;
     string name;
 };
+
+/**************************** functions ****************************/
+int get_all_players(player**);
+void roll_dice(int**);
+bool is_game_over(int, player**);
+player get_winner(int, player**);
 
 #endif

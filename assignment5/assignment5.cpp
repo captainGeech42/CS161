@@ -19,8 +19,15 @@ using namespace std;
 ** Post-Conditions: none
 *********************************************************************/
 int main() {
-    player p1;
-    p1.score = 500;
-    p1.name = "Zander";
-    cout << p1.name << endl;
+    srand(time(NULL));
+
+    player* player_array;
+    int num_players = get_all_players(&player_array);
+
+    int* dice_array = new int[6];
+
+    while (!is_game_over(num_players, &player_array)) {
+        player_array[0].score += 1000;
+        cout << "maybe..." << endl;
+    }   
 }
