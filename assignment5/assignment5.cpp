@@ -26,8 +26,20 @@ int main() {
 
     int* dice_array = new int[6];
 
+    int score;
+    int current_player = 0;
     while (!is_game_over(num_players, &player_array)) {
-        player_array[0].score += 1000;
-        cout << "maybe..." << endl;
-    }   
+        score = 0;
+
+        // run the player's turn
+        
+
+        // switch to the next player
+        if (current_player == num_players - 1)
+            current_player = 0;
+        else
+            current_player++;
+    }
+
+    return 0;
 }

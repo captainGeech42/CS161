@@ -14,6 +14,7 @@ using namespace std;
 
 /**************************** definitions ****************************/
 
+
 /**************************** includes ****************************/
 #include <cmath>
 #include <cstdlib>
@@ -33,5 +34,11 @@ int get_all_players(player**);
 void roll_dice(int**);
 bool is_game_over(int, player**);
 player get_winner(int, player**);
+int score_dice(int, int**);
+bool is_triplet(int*, int);
+bool is_double_triplet(int*);
+bool is_pair(int*, int);
+bool is_triple_pair(int*);
+bool is_straight(int*);
 
 #endif
