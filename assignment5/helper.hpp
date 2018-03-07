@@ -9,8 +9,8 @@
 
 using namespace std;
 
-#ifndef ASSIGNMENT3_HPP
-#define ASSIGNMENT3_HPP
+#ifndef HELPER
+#define HELPER
 
 #include <cmath>
 #include <iostream>
@@ -34,5 +34,6 @@ string to_lower(string sentence);
 int get_int(string prompt);
 float get_float(string prompt);
 string get_header(string message);
+bool get_yes_no(string prompt);
 
 #endif

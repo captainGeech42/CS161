@@ -1,7 +1,7 @@
 CC = g++
 C_FLAGS = -g -Wall
 
-all: helper.o assignment5.o assignment5_func.o
+all: clean helper.o assignment5.o assignment5_func.o
 	$(CC) $(C_FLAGS) -o assignment5 helper.o assignment5.o assignment5_func.o
 
 helper.o: helper.cpp helper.hpp
@@ -17,8 +17,11 @@ clean:
 	$(RM) *.o
 	$(RM) *.gch
 
-run: assignment5
+run: all assignment5
 	./assignment5
 
-debug: assignment5
+debug: all assignment5
 	gdb assignment5
+
+memcheck: all assignment5
+	valgrind ./assignment5

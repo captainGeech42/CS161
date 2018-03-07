@@ -13,7 +13,7 @@ using namespace std;
 #define ASSIGNMENT5_HPP
 
 /**************************** definitions ****************************/
-
+#define MAX_SCORE 1000
 
 /**************************** includes ****************************/
 #include <cmath>
@@ -34,11 +34,22 @@ int get_all_players(player**);
 void roll_dice(int**);
 bool is_game_over(int, player**);
 player get_winner(int, player**);
-int score_dice(int, int**);
+void print_scoreboard(int, player**);
+int score_dice(int, int*);
 bool is_triplet(int*, int);
 bool is_double_triplet(int*);
 bool is_pair(int*, int);
 bool is_triple_pair(int*);
 bool is_straight(int*);
+bool is_six(int*);
+int is_five(int*);
+int is_four(int*);
+bool is_four_and_pair(int*);
+bool continue_rolling(bool, int);
+void print_dice(int, int*);
+int set_aside_dice(int, int*, int**);
+string get_which_dice_aside(int, int*);
+bool aside_is_valid(int, string, int*);
+void reset_dice_array(int**);
 
 #endif

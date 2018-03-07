@@ -355,3 +355,16 @@ string get_header(string message) {
 	output = string(left_dash, '-') + ' ' + message + ' ' + string(right_dash, '-');
 	return output;
 }
+
+bool get_yes_no(string prompt) {
+	cout << prompt << endl;
+	string input;
+	getline(cin, input);
+
+	if (input == "yes")
+		return true;
+	if (input == "no")
+		return false;
+	cout << "Invalid input received." << endl;
+	return get_yes_no(prompt);
+}
