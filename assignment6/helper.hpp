@@ -16,6 +16,7 @@ using namespace std;
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <cstring>
 
 bool check_range(int lower_bound, int upper_bound, int test_value);
 bool is_int(string num);
@@ -35,5 +36,6 @@ int get_int(string prompt);
 float get_float(string prompt);
 string get_header(string message);
 bool get_yes_no(string prompt);
+int parse_int(char*);
 
 #endif

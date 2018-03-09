@@ -18,6 +18,7 @@ assignment6_func.o: assignment6_func.cpp assignment6.hpp helper.hpp
 clean:
 	$(RM) *.o
 	$(RM) *.gch
+	$(RM) peda*
 
 run: all assignment6
 	./assignment6 $(size)
