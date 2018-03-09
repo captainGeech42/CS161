@@ -13,7 +13,7 @@ using namespace std;
 #define ASSIGNMENT6_HPP
 
 /**************************** definitions ****************************/
-#define SIZE 8
+#define SIZE 12
 #define BLACK_BG 40
 #define WHITE_BG 47
 #define BLACK_FG 30
@@ -25,6 +25,7 @@ using namespace std;
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <cstring>
 #include "helper.hpp"
 
 /**************************** enums ****************************/
@@ -46,7 +47,9 @@ struct Piece {
 };
 
 /**************************** functions ****************************/
-void init_board(Piece*** board);
-void print_board(Piece** board);
+void init_board(int, Piece***);
+void print_board(int, Piece**);
+void delete_board(int, Piece***);
+bool is_args_valid(int, char**);
 
 #endif
