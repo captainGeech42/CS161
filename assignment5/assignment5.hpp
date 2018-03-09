@@ -13,7 +13,7 @@ using namespace std;
 #define ASSIGNMENT5_HPP
 
 /**************************** definitions ****************************/
-#define MAX_SCORE 1000
+#define MAX_SCORE 10000
 
 /**************************** includes ****************************/
 #include <cmath>

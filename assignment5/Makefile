@@ -25,3 +25,10 @@ debug: all assignment5
 
 memcheck: all assignment5
 	valgrind ./assignment5
+
+compress: clean
+	$(RM) peda*
+	$(RM) test*
+	$(RM) a5.tar.gz
+	$(RM) assignment5
+	tar cvzf a5.tar.gz *

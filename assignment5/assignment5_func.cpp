@@ -114,22 +114,16 @@ void print_scoreboard(int num_players, player** player_array) {
 ** Post-Conditions: none
 *********************************************************************/
 int score_dice(int num_dice, int* dice_array) {
-    // printf("scoring dice, num_dice=%d\n", num_dice);
-    // int* dice_freq = new int[6];
     int dice_freq[6] = {0};
     for (int i = 0; i < num_dice; i++) {
         if (dice_array[i] > 0) {
-            // printf("i=%d, dice_array[i]=%d, ", i, dice_array[i]);
-            dice_freq[dice_array[i] - 1] += 1;
-            // printf("frequency @ %d is %d\n", dice_array[i]-1, dice_freq[dice_array[i]-1]);            
+            dice_freq[dice_array[i] - 1] += 1;         
         }
     }
 
     int score = 0;
     int retval = 0;
 
-    // if (num_dice == 6) {
-        // cout << "there are six dice" << endl;
         // two triplets = 2500pts
         score += 2500 * is_double_triplet(dice_freq);
         if (score > 0) return score;
@@ -150,21 +144,16 @@ int score_dice(int num_dice, int* dice_array) {
         score += 3000 * is_six(dice_freq);
         if (score > 0) return score;
         
-    // } else {
         // five of a kind = 2000pts
         retval = is_five(dice_freq);
-        // printf("is_five retval is %d\n", retval);
         if (retval >= 0) {
-            // cout << "in is_five" << endl;
             score += 2000;
             dice_freq[retval] -= 5;
         }
 
         // four of a kind = 1000pts
         retval = is_four(dice_freq);
-        // printf("is_four retval is %d\n", retval);
         if (retval >= 0) {
-            // cout << "in is_four" << endl;
             score += 1000;
             dice_freq[retval] -= 4;
         }
@@ -172,7 +161,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 6s = 600pts
         retval = is_triplet(dice_freq, 6);
         if (retval) {
-            // cout << "in 6" << endl;
             score += 600;
             dice_freq[retval] -= 3;
         }
@@ -180,7 +168,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 5s = 500pts
         retval = is_triplet(dice_freq, 5);
         if (retval) {
-            // cout << "in 5" << endl;
             score += 500;
             dice_freq[retval] -= 3;
         }
@@ -188,7 +175,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 4s = 400pts
         retval = is_triplet(dice_freq, 4);
         if (retval) {
-            // cout << "in 4" << endl;
             score += 400;
             dice_freq[retval] -= 3;
         }
@@ -196,7 +182,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 3s = 300pts
         retval = is_triplet(dice_freq, 3);
         if (retval) {
-            // cout << "in 3" << endl;
             score += 300;
             dice_freq[retval] -= 3;
         }
@@ -204,7 +189,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 2s = 200pts
         retval = is_triplet(dice_freq, 2);
         if (retval) {
-            // cout << "in 2" << endl;
             score += 200;
             dice_freq[retval] -= 3;
         }
@@ -212,7 +196,6 @@ int score_dice(int num_dice, int* dice_array) {
         // three 1s = 300pts
         retval = is_triplet(dice_freq, 1);
         if (retval) {
-            // cout << "in 1" << endl;
             score += 300;
             dice_freq[retval] -= 3;
         }
@@ -228,9 +211,7 @@ int score_dice(int num_dice, int* dice_array) {
             score += 100;
             dice_freq[0]--;
         }
-    // }
-
-    // delete[] dice_freq;
+        
     return score;
 }
 
@@ -312,7 +293,6 @@ bool is_straight(int* dice_freq) {
 bool is_six(int* dice_freq) {
     for (int i = 0; i < 6; i++) {
         if (dice_freq[i] == 6) {
-            // printf("IS_SIX: freq @ %d is 6\n", i);
             return true;
         }
     }
@@ -329,7 +309,6 @@ bool is_six(int* dice_freq) {
 int is_five(int* dice_freq) {
     for (int i = 0; i < 6; i++) {
         if (dice_freq[i] == 5) {
-            // printf("IS_FIVE: freq @ %d is 5\n", i);
             return i;
         }
     }
@@ -346,7 +325,6 @@ int is_five(int* dice_freq) {
 int is_four(int* dice_freq) {
     for (int i = 0; i < 6; i++) {
         if (dice_freq[i] == 4) {
-            // printf("IS_FOUR: freq @ %d is 4\n", i);
             return i;
         }
     }
@@ -412,13 +390,6 @@ void print_dice(int num_dice, int* dice_array) {
 int set_aside_dice(int num_available, int* dice_array, int** aside_dice) {
     reset_dice_array(aside_dice);
 
-    // int num_available = 0;
-    // for (int i = 0; i < 6; i++) {
-    //     if (dice_array[i] == -1)
-    //         break;
-    //     num_available++;
-    // }
-
     string dice = get_which_dice_aside(num_available, dice_array);
 
     unsigned int i = 0;
@@ -446,10 +417,6 @@ string get_which_dice_aside(int num_dice, int* dice_array) {
         cout << "Dice: ";
 
         getline(cin, input);
-
-        // if (input.length() == 0) {
-        //     return input;
-        // }
     } while (!aside_is_valid(num_dice, input, dice_array));
 
     return input;
@@ -464,10 +431,8 @@ string get_which_dice_aside(int num_dice, int* dice_array) {
 *********************************************************************/
 bool aside_is_valid(int num_dice, string input, int* dice_array) {
     int val;
-    // printf("in aside_is_valid, num_dice=%d\n", num_dice);
     for (unsigned int i = 0; i < input.length(); i++) {
         val = input[i] - 48;
-        // printf("in aside_is_valid, int is %d\n", val);
         if (val < 1 || val > num_dice) {
             cout << "Please enter a valid combination." << endl;
             return false;
@@ -478,12 +443,10 @@ bool aside_is_valid(int num_dice, string input, int* dice_array) {
     for (unsigned int i = 0; i < input.length(); i++) {
         dice[i] = dice_array[input[i] - 1 - 48];
     }
-    // cout << "CALLING SCORE IN VALID CHECK" << endl;
     if (score_dice(input.length(), dice) == 0) {
         cout << "Please enter a combination that scores points." << endl;
         return false;
     }
-    // cout << "FINISHED SCORE IN VALID CHECK" << endl;
     delete[] dice;
     return true;
 }
