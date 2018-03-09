@@ -13,11 +13,15 @@ using namespace std;
 #define ASSIGNMENT6_HPP
 
 /**************************** definitions ****************************/
-#define SIZE 12
+// color codes were obtained from https://en.wikipedia.org/wiki/ANSI_escape_code#3/4_bit
 #define BLACK_BG 40
 #define WHITE_BG 47
-#define BLACK_FG 30
+#define WHITE_FG 37
 #define RED_FG 31
+#define SELECTED 32
+
+#define PIECE 'o'
+#define KING 'k'
 
 /**************************** includes ****************************/
 #include <cmath>
@@ -30,8 +34,13 @@ using namespace std;
 
 /**************************** enums ****************************/
 enum Color {
-    red = RED_FG,
-    black = BLACK_FG
+    kRed = RED_FG,
+    kWhite = WHITE_FG
+};
+
+enum CoordinateSelectionMode {
+    kPiece = 1,
+    kLocation = 2
 };
 
 /**************************** structs ****************************/
@@ -41,15 +50,32 @@ struct Player {
 };
 
 struct Piece {
+    bool exists;
     bool king;
+    bool selected;
     Color color;
-    char symbol;
+};
+
+struct Gameboard {
+    int size;
+    Piece** board;
+};
+
+struct Coordinate {
+    char* row;
+    char* col;
 };
 
 /**************************** functions ****************************/
-void init_board(int, Piece***);
-void print_board(int, Piece**);
-void delete_board(int, Piece***);
+void init_board(Gameboard*);
+void print_board(Gameboard);
+void delete_board(Gameboard*);
 bool is_args_valid(int, char**);
+bool is_game_over(Color color, Gameboard);
+bool is_coord_valid(Coordinate, Player, Gameboard, CoordinateSelectionMode);
+int get_row(Coordinate);
+int get_col(Coordinate);
+Coordinate get_coord(Player, Gameboard, CoordinateSelectionMode);
+bool is_move_valid(Coordinate, Player);
 
 #endif

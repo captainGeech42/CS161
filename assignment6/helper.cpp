@@ -356,6 +356,13 @@ string get_header(string message) {
 	return output;
 }
 
+/*********************************************************************
+** Function: get_yes_no
+** Description: Asks the user a yes/no question
+** Parameters: string prompt
+** Pre-Conditions: none
+** Post-Conditions: none
+*********************************************************************/
 bool get_yes_no(string prompt) {
 	cout << prompt << endl;
 	string input;
@@ -367,4 +374,24 @@ bool get_yes_no(string prompt) {
 		return false;
 	cout << "Invalid input received." << endl;
 	return get_yes_no(prompt);
+}
+
+/*********************************************************************
+** Function: parse_int
+** Description: Converts a char* to an int
+** Parameters: char* str
+** Pre-Conditions: str is null-terminated
+** Post-Conditions: none
+*********************************************************************/
+int parse_int(char* str) {
+	unsigned int length = strlen(str);
+	unsigned int newint = 0;
+	for (unsigned int i = 0; i < length; i++) {
+		if (str[i] == 48 || str[i] == 45) {
+			continue;
+		} else {
+			newint += (str[i] - 48) * pow(10, length - 1 - i);
+		}
+	}
+	return newint;
 }
